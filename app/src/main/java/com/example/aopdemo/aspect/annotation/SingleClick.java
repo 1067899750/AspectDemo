@@ -1,4 +1,4 @@
-package com.example.aopdemo.aspect;
+package com.example.aopdemo.aspect.annotation;
 
 /**
  * @author puyantao

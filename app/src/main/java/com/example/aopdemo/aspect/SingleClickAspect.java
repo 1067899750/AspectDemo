@@ -6,6 +6,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 
 /**
  * @author puyantao
@@ -15,7 +19,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class SingleClickAspect {
 
-    @Pointcut("execution(@com.example.aopdemo.aspect.SingleClick * * (..))")
+    @Pointcut("execution(@com.example.aopdemo.aspect.annotation.SingleClick * * (..))")
     public void methodAnnotated() {
 
     }
@@ -30,6 +34,11 @@ public class SingleClickAspect {
     public Object aroundJoinPoint(ProceedingJoinPoint joinPoint) throws Throwable {
         long currentTime = System.currentTimeMillis();
         Log.i("--->", "currentTime:" + currentTime);
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        method.setAccessible(true);
+        Annotation[] declaredAnnotations = method.getDeclaredAnnotations();
+        Log.i("--->", "Annotation:" + declaredAnnotations[0]);
         Object result = joinPoint.proceed();
         long lastTime = System.currentTimeMillis();
         Log.i("--->", "lastTime:" + lastTime);
