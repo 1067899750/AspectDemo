@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.aopdemo.aspect.annotation.SelectAnnotation;
+import com.example.aopdemo.aspect.annotation.AsyncAnnotation;
 import com.example.aopdemo.aspect.annotation.SingleClick;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("MainActivity -->" + Thread.currentThread());
                 sharkItOff("name", 1);
             }
 
@@ -47,17 +48,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @SelectAnnotation(name = "摇一摇")
-    public void sharkItOff(String str,int a) {
+    @AsyncAnnotation()
+    public void sharkItOff(String str, int a) {
+        System.out.println("sharkItOff -->" + Thread.currentThread());
     }
 
-    private void normal(){
-        mNormal.setText(String.format("点击次数:%s次", mNornalSum ++));
+//    @LogAnnotation(module = "sharkItOff(String str,int a)", desc = "log")
+//    public void sharkItOff(String str,int a) {
+//    }
+
+    private void normal() {
+        mNormal.setText(String.format("点击次数:%s次", mNornalSum++));
     }
 
     @SingleClick
-    private void single(){
-        mSingle.setText(String.format("防止多次点击:%s次", mSingleSum ++));
+    private void single() {
+        mSingle.setText(String.format("防止多次点击:%s次", mSingleSum++));
     }
 
 
