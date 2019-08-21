@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 public class SingleClickAspect {
 
     @Pointcut("execution(@com.example.aopdemo.aspect.annotation.SingleClick * * (..))")
-    public void methodAnnotated() {
+    public void methodAnnotated() { // 定义切点
 
     }
 

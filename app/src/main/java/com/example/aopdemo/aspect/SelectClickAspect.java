@@ -21,7 +21,7 @@ import java.lang.reflect.Modifier;
 public class SelectClickAspect {
 
     @Pointcut("execution(@com.example.aopdemo.aspect.annotation.SelectAnnotation * * (..))")
-    public void log() {
+    public void log() { // 定义切点
 
     }
 

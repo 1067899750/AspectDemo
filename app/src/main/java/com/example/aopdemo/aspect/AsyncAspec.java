@@ -23,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 public class AsyncAspec {
 
     @Pointcut("execution(@com.example.aopdemo.aspect.annotation.AsyncAnnotation * * (..))")
-    public void doAsyncThread(){
+    public void doAsyncThread(){ // 定义切点
 
     }
 

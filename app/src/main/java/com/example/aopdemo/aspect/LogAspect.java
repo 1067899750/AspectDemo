@@ -21,7 +21,7 @@ import java.lang.reflect.Modifier;
 public class LogAspect {
 
     @Pointcut("execution(@com.example.aopdemo.aspect.annotation.LogAnnotation * * (..))")
-    public void log(){
+    public void log(){ // 定义切点
 
     }
 
